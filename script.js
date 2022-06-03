@@ -14,8 +14,8 @@ function Book(title, author, pages, isRead) {
 
 //render library function
 function renderLibrary() {
-  const renderedBooks = document.querySelector(".library").children;
-  const renderedBooksArray = Array.from(renderedBooks);
+  let renderedBooks = document.querySelector(".library").children;
+  let renderedBooksArray = Array.from(renderedBooks);
   console.log(renderedBooksArray);
 
   if (renderedBooks.length)
@@ -104,47 +104,57 @@ const closeModalBtn = document
 
 //add new book event listener
 
+let errorCount = 0;
+
 const form = document.getElementById("form").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const pages = document.getElementById("pages").value;
-  const isRead = document.getElementById("read").checked;
+  const title = document.getElementById("title");
+  const author = document.getElementById("author");
+  const pages = document.getElementById("pages");
+  const isRead = document.getElementById("read");
 
-  const newBook = new Book(title, author, pages, isRead);
+  const newBook = new Book(
+    title.value,
+    author.value,
+    pages.value,
+    isRead.checked
+  );
+
+  title.value = "";
+  author.value = "";
+  pages.value = "";
+  isRead.checked = false;
 
   addBookToLibrary(newBook);
 
   renderLibrary();
 
   toggleModal("none");
+});
 
-  //Event listener after new items are initialized
+//Event listener after new items are initialized
 
-  //change isRead status
-  const changeReadStatusCheckbox = document
-    .querySelector(".change-read-status")
-    .addEventListener("input", (e) => {
+//used event delegation for this.
+
+const libraryGrid = document
+  .querySelector(".library")
+  .addEventListener("click", (e) => {
+    if (e.target.classList.contains("change-read-status")) {
       const isReadSpan = document.querySelector(".is-read");
       isReadSpan.textContent = e.target.checked ? "Read" : "Not Read";
-
       const bookDiv = e.target.parentElement.parentElement.parentElement;
+      console.log(bookDiv);
       const bookIndex = bookDiv.dataset.id;
+      console.log(bookIndex);
 
       myLibrary[bookIndex].isRead = e.target.checked ? true : false;
-    });
-
-  //add delete function
-  const deleteBtn = document
-    .querySelector(".del-btn")
-    .addEventListener("click", (e) => {
+    } else if (e.target.classList.contains("del-btn")) {
       const bookDiv = e.target.parentElement.parentElement;
       const id = bookDiv.dataset.id;
-      console.log(bookDiv.dataset.id);
+      console.log(id);
 
-      bookDiv.remove();
-      myLibrary = myLibrary.filter((book) => book.id !== id);
+      myLibrary.splice(id, 1);
       renderLibrary();
-    });
-});
+    }
+  });
