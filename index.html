@@ -12,7 +12,7 @@
       <span class="close">&times;</span>
       <div class="form-modal-content">
         <h1>Add a Book</h1>
-        <form>
+        <form id="form">
           <label for="title">Title</label>
           <input type="text" id="title" name="title" />
 
@@ -20,7 +20,7 @@
           <input id="author" name="author" type="text" />
 
           <label for="pages">Pages</label>
-          <input id="author" name="author" type="number" />
+          <input id="pages" name="author" type="number" />
 
           <div class="form-buttons">
             <div class="checkbox-two">
@@ -36,39 +36,22 @@
       <div class="header">
         <h1>Library</h1>
         <p>Welcome, User.</p>
-        <button>NEW BOOK</button>
+        <button class="enable-modal-btn">NEW BOOK</button>
       </div>
 
       <div class="library">
-        <div class="book">
+        <!-- <div class="book" data-id="1">
           <p>Of mice and men</p>
           <p>Armando Cabrera</p>
           <p>29</p>
           <div class="book-buttons">
             <div class="checkbox">
-              <span>Read</span><input type="checkbox" />
+              <span class="is-read">Not Read</span
+              ><input type="checkbox" class="change-read-status" />
             </div>
-            <button>Delete</button>
+            <button class="del-btn">Delete</button>
           </div>
-        </div>
-        <div class="book">
-          <p>title</p>
-          <p>author</p>
-          <p>pages</p>
-          <div><span>read</span><input type="checkbox" /></div>
-        </div>
-        <div class="book">
-          <p>title</p>
-          <p>author</p>
-          <p>pages</p>
-          <div><span>read</span><input type="checkbox" /></div>
-        </div>
-        <div class="book">
-          <p>title</p>
-          <p>author</p>
-          <p>pages</p>
-          <div><span>read</span><input type="checkbox" /></div>
-        </div>
+        </div> -->
       </div>
     </div>
     <script src="./script.js"></script>
