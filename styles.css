@@ -99,6 +99,13 @@
   grid-template-columns: 1fr 1fr;
   align-items: flex-end;
 }
+
+.checkbox span {
+  font-size: 1.2rem;
+  white-space: nowrap;
+  position: relative;
+  bottom: 5px;
+}
 .checkbox input {
   position: relative;
   bottom: 6px;
