@@ -20,7 +20,6 @@ class Library {
   renderLibrary() {
     let renderedBooks = document.querySelector(".library").children;
     let renderedBooksArray = Array.from(renderedBooks);
-    console.log(renderedBooksArray);
 
     if (renderedBooks.length)
       renderedBooksArray.forEach((renderedBook) => renderedBook.remove());
@@ -159,10 +158,11 @@ const libraryGrid = document
       const bookIndex = bookDiv.dataset.id;
 
       myLibrary.books[bookIndex].isRead = e.target.checked ? true : false;
+
+      console.log(myLibrary.books[bookIndex].isRead);
     } else if (e.target.classList.contains("del-btn")) {
       const bookDiv = e.target.parentElement.parentElement;
       const id = bookDiv.dataset.id;
-      console.log(id);
 
       myLibrary.books.splice(id, 1);
       myLibrary.renderLibrary();
